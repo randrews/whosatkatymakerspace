@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Who</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+    <% if flash[:alert] %>
+        <div class="flash alert"><%= flash[:alert] %></div>
+    <% end %>
+    <% if flash[:notice] %>
+        <div class="flash notice"><%= flash[:notice] %></div>
+    <% end %>
+
+    <%= yield %>
+
+</body>
+</html>

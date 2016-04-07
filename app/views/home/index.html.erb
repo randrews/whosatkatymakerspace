@@ -1,0 +1,44 @@
+<ul>
+    <% if current_user %>
+        <li>
+            <%= link_to 'My profile', edit_user_registration_path  %>
+        </li>
+        <li>
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+        </li>
+    <% else %>
+        <li>
+            <%= link_to 'Log in', new_user_session_path %>
+        </li>
+        <li>
+            <%= link_to 'Sign up', new_user_registration_path %>
+        </li>
+    <% end %>
+</ul>
+
+<h1>Who's At Katy Makerspace?</h1>
+
+<% if @visits.any? %>
+    <ul>
+        <% @visits.each do |visit| %>
+            <li>
+                <%= link_to visit.user.email %>
+                <span>(arrived <%= time_ago_in_words(visit.arrival) %> ago)</span>
+            </li>
+        <% end %>
+    </ul>
+<% else %>
+    Nobody at the moment.
+<% end %>
+
+<div class="">
+    <% if current_user.try(:active_visit) %>
+        <%= link_to "I'm leaving", check_out_path, method: :delete %>
+    <% elsif current_user %>
+        <%= link_to "I'm here!", check_in_path, method: :post %>
+    <% else %>
+        <%= link_to "Log in", new_user_session_path %> or
+        <%= link_to "sign up", new_user_registration_path %>
+        to tell people you're at the space!
+    <% end %>
+</div>

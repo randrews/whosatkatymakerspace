@@ -15,11 +15,12 @@ gem 'jbuilder', '~> 2.0'
 
 # Use unicorn as the app server
 gem 'unicorn', group: [:production]
-gem 'airbrake', group: [:production]
+gem 'rollbar', '~> 2.8.3'
 
 gem 'devise'
-gem 'omniauth'
+gem 'omniauth-google'
 gem 'dotenv-rails'
+gem 'paperclip'
 
 group :test, :development do
   gem 'better_errors'

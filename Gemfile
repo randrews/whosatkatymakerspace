@@ -18,9 +18,11 @@ gem 'unicorn', group: [:production]
 gem 'rollbar', '~> 2.8.3'
 
 gem 'devise'
-gem 'omniauth-google'
+gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'paperclip'
+
+gem 'aws-sdk', '< 2.0', group: [:production]
 
 group :test, :development do
   gem 'better_errors'

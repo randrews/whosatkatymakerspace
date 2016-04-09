@@ -1,4 +1,8 @@
-<h2>Sign up</h2>
+<h2>Sign in with Google</h2>
+
+<%= link_to "Google", user_omniauth_authorize_path(:google_oauth2) %>
+
+<h2>Sign up with email</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -19,6 +23,11 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">

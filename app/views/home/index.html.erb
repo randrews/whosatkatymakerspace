@@ -22,7 +22,8 @@
     <ul>
         <% @visits.each do |visit| %>
             <li>
-                <%= link_to visit.user.email %>
+                <%= image_tag visit.user.image.url(:thumb) %>
+                <%= link_to visit.user.name %>
                 <span>(arrived <%= time_ago_in_words(visit.arrival) %> ago)</span>
             </li>
         <% end %>

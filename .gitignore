@@ -17,3 +17,6 @@
 
 config/database.yml
 .env
+public/assets
+shared
+

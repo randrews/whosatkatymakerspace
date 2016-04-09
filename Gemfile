@@ -30,6 +30,5 @@ group :test, :development do
   gem 'pry-remote'
   gem 'faker'
   gem 'factory_girl_rails'
-  gem 'debugger'
 end
 

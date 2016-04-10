@@ -1,5 +1,5 @@
 class VisitController < ApplicationController
-  before_action :authenticate_user!
+  before_filter :check_if_user
 
   def create
     v = Visit.new(user: current_user, active: true)
@@ -41,6 +41,18 @@ class VisitController < ApplicationController
         }
         format.json { render json: { error: "You're not currently at the makerspace" }, status: 422 }
       end
+    end
+  end
+
+  private
+
+  def check_if_user
+    if current_user.present?
+      true
+    else
+      flash[:alert] = "Log in or create an account first"
+      redirect_to new_user_session_path
+      false
     end
   end
 end

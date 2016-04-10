@@ -44,6 +44,14 @@ class VisitController < ApplicationController
     end
   end
 
+  def toggle
+    if current_user.active_visit.present?
+      delete
+    else
+      create
+    end
+  end
+
   private
 
   def check_if_user

@@ -6,6 +6,8 @@ class Visit < ActiveRecord::Base
   before_validation :set_departure, if: -> { active_changed? from: true, to: false }
 
   scope :active, -> { where(active: true) }
+  scope :approved, -> { joins(:user).where('users.approved' => true) }
+  scope :approved_or_self, ->(user) { joins(:user).where('users.approved = ? or users.id = ?', true, user.id) }
 
   def depart!
     self.active = false

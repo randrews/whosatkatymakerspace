@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   get '/check_in', to: 'visit#create'
   delete '/check_out', to: 'visit#delete'
 
+  post '/users/:id/check_out', to: 'users#check_out', as: 'force_check_out'
+  post '/users/:id/approve', to: 'users#approve', as: 'approve_user'
+  delete '/users/:id', to: 'users#delete', as: 'delete_user'
+
   root to: 'home#index'
 end

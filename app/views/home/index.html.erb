@@ -23,7 +23,14 @@
         <% @visits.each do |visit| %>
             <li>
                 <%= image_tag visit.user.image.url(:thumb) %>
-                <%= visit.user.name %>
+                <%= link_to visit_url(visit) do %>
+                    <% if visit.task.present? %>
+                        <%= visit.user.name %>:
+                        "<%= visit.task.truncate(20) %>"
+                    <% else %>
+                        <%= visit.user.name -%>
+                    <% end -%>
+                <% end -%>
                 <span>(arrived <%= time_ago_in_words(visit.arrival) %> ago)</span>
                 <% if is_admin? %>
                     <span>
@@ -45,6 +52,7 @@
 
 <div class="">
     <% if current_user.try(:active_visit) %>
+        <%= render partial: 'visit/task_form', locals: { visit: current_user.active_visit } %>
         <%= link_to "I'm leaving", check_out_path, method: :delete %>
     <% elsif current_user %>
         <%= link_to "I'm here!", check_in_path, method: :post %>

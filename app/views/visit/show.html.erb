@@ -1,0 +1,19 @@
+<h1><%= @visit.user.name %> on <%= @visit.arrival.localtime.strftime("%A, %B %d, %Y") %></h1>
+<%= image_tag @visit.user.image.url(:thumb) %>
+
+<h2>Arrived:</h2>
+<p><%= @visit.arrival.localtime.strftime("%I:%M:%S %p") %></p>
+
+<% if @visit.departure.present? %>
+<h2>Departed:</h2>
+<p><%= @visit.departure.localtime.strftime("%I:%M:%S %p") %></p>
+<% end %>
+
+<% if @visit.user == current_user || current_user.try(:admin) %>
+    <%= render partial: 'task_form', locals: {visit: @visit} %>
+<% else %>
+    <% if @visit.task.present? %>
+        <h2>Worked on:</h2>
+        <p><%= @visit.task %></p>
+    <% end %>
+<% end %>

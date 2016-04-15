@@ -1,5 +1,5 @@
 class VisitController < ApplicationController
-  before_filter :check_if_user
+  before_filter :check_if_user, except: [:show]
 
   def create
     v = Visit.new(user: current_user, active: true)
@@ -52,7 +52,33 @@ class VisitController < ApplicationController
     end
   end
 
+  def update
+    @visit = Visit.find(params[:id])
+    if @visit.user != current_user && !current_user.admin?
+      flash[:alert] = "This is not your visit"
+    else
+      @visit.update(visit_params)
+    end
+
+    respond_to do |fmt|
+      fmt.html {
+        redirect_to :back
+      }
+      fmt.json {
+        render json: @visit.to_json
+      }
+    end
+  end
+
+  def show
+    @visit = Visit.find(params[:id])
+  end
+
   private
+
+  def visit_params
+    params.require(:visit).permit(:task)
+  end
 
   def check_if_user
     if current_user.present?

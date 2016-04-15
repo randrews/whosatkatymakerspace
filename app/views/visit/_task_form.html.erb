@@ -1,0 +1,4 @@
+<%= form_for visit, as: 'visit', url: visit_url(visit) do |f| %>
+    <textarea placeholder="What are you working on?" name="visit[task]" id="visit_task"><%= visit.task %></textarea>
+    <%= f.submit "Submit" %>
+<% end %>

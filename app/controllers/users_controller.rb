@@ -1,7 +1,7 @@
 # Encoding: utf-8
 
 class UsersController < ApplicationController
-  before_filter :check_if_admin
+  before_filter :check_if_admin, except: [:show]
   before_filter :find_user
 
   def check_out
@@ -26,6 +26,12 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:notice] = "#{name} deleted"
     redirect_to :back
+  end
+
+  def show
+    if !@user.approved? && @user != current_user && !(current_user.try(:admin?))
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   protected

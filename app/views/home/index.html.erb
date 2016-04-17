@@ -22,8 +22,8 @@
     <ul>
         <% @visits.each do |visit| %>
             <li>
-                <%= image_tag visit.user.image.url(:thumb) %>
-                <%= link_to visit_url(visit) do %>
+                <%= link_to user_path(visit.user) do %>
+                    <%= image_tag visit.user.image.url(:thumb) %>
                     <% if visit.task.present? %>
                         <%= visit.user.name %>:
                         "<%= visit.task.truncate(20) %>"

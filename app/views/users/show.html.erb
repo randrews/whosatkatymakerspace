@@ -1,0 +1,20 @@
+<h1><%= @user.name %></h1>
+<%= @user.email %>
+
+<% if @user.visits.any? %>
+    <h2>Visits:</h2>
+    <ul>
+        <% @user.visits.each do |visit| %>
+            <li>
+                <%= link_to visit_path(visit) do %>
+                    <% if visit.task.present? %>
+                        <%= visit.arrival.localtime.strftime("%A, %B %d, %Y") %>:
+                        "<%= visit.task.truncate(20) %>"
+                    <% else %>
+                        <%= visit.arrival.localtime.strftime("%A, %B %d, %Y") %>
+                    <% end %>
+                <% end %>
+            </li>
+        <% end %>    
+    </ul>
+<% end %>

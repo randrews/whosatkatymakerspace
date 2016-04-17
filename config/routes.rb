@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :visit, only: [:update, :show]
   post '/users/:id/check_out', to: 'users#check_out', as: 'force_check_out'
   post '/users/:id/approve', to: 'users#approve', as: 'approve_user'
+  get '/users/:id', to: 'users#show', as: 'user'
   delete '/users/:id', to: 'users#delete', as: 'delete_user'
 
   root to: 'home#index'

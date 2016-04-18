@@ -3,21 +3,25 @@
 <% if @visits.any? %>
     <ul class="active-visits">
         <% @visits.each do |visit| %>
-            <li>
+            <li class="visit">
                 <%= link_to user_path(visit.user) do %>
                     <%= image_tag visit.user.image.url(:thumb) %>
                     <%= visit.user.name -%>
                 <% end -%>
                 <% if is_admin? %>
-                    <span>
-                        <% if visit.user.approved? %>
-                            (Admin: <%= link_to "Check out", force_check_out_path(visit.user), method: :post %>)
-                        <% else %>
-                            (Admin: <%= link_to "Check out", force_check_out_path(visit.user), method: :post %>
-                            <%= link_to "Approve", approve_user_path(visit.user), method: :post %>
-                            <%= link_to "Delete", delete_user_path(visit.user), method: :delete %>)
-                        <% end %>
-                    </span>
+                    <div class="dropdown">
+                        <button
+                           class="btn btn-mini btn-danger dropdown-toggle"
+                           id="admin-dropdown-<%= visit.id %>"
+                           data-toggle="dropdown"><span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <% if !visit.user.approved? %>
+                                <li><%= link_to "Approve", approve_user_path(visit.user), method: :post %></li>
+                                <li><%= link_to "Delete", delete_user_path(visit.user), method: :delete %></li>
+                            <% end %>
+                            <li><%= link_to "Check out", force_check_out_path(visit.user), method: :post %></li>
+                        </ul>
+                    </div>
                 <% end %>
             </li>
         <% end %>

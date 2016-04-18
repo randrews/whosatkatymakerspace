@@ -10,13 +10,24 @@ body.home-controller ul.active-visits {
     text-align: center;
 }
 
-body.home-controller ul.active-visits li {
+body.home-controller ul.active-visits li.visit {
     width: 120px;
     border: 1px solid #a7a7a7;
     height: 140px;
     padding: 10px;
     margin: 5px;
     display: inline-block;
+    position: relative;
+}
+
+body.home-controller ul.active-visits li.visit .dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+body.home-controller ul.active-visits li.visit .dropdown button {
+    padding: 2px 8px;
 }
 
 body.home-controller ul.active-visits li img {

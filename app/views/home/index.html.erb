@@ -1,37 +1,13 @@
-<ul>
-    <% if current_user %>
-        <li>
-            <%= link_to 'My profile', edit_user_registration_path  %>
-        </li>
-        <li>
-            <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-        </li>
-    <% else %>
-        <li>
-            <%= link_to 'Log in', new_user_session_path %>
-        </li>
-        <li>
-            <%= link_to 'Sign up', new_user_registration_path %>
-        </li>
-    <% end %>
-</ul>
-
 <h1>Who's At Katy Makerspace?</h1>
 
 <% if @visits.any? %>
-    <ul>
+    <ul class="active-visits">
         <% @visits.each do |visit| %>
             <li>
                 <%= link_to user_path(visit.user) do %>
                     <%= image_tag visit.user.image.url(:thumb) %>
-                    <% if visit.task.present? %>
-                        <%= visit.user.name %>:
-                        "<%= visit.task.truncate(20) %>"
-                    <% else %>
-                        <%= visit.user.name -%>
-                    <% end -%>
+                    <%= visit.user.name -%>
                 <% end -%>
-                <span>(arrived <%= time_ago_in_words(visit.arrival) %> ago)</span>
                 <% if is_admin? %>
                     <span>
                         <% if visit.user.approved? %>
@@ -47,18 +23,30 @@
         <% end %>
     </ul>
 <% else %>
-    Nobody at the moment.
+    <div class="nobody-here">Nobody at the moment</div>
 <% end %>
 
-<div class="">
+<hr/>
+
+<div class="actions">
     <% if current_user.try(:active_visit) %>
-        <%= render partial: 'visit/task_form', locals: { visit: current_user.active_visit } %>
-        <%= link_to "I'm leaving", check_out_path, method: :delete %>
+        <%= form_for current_user.active_visit, as: 'visit', url: visit_url(current_user.active_visit) do |f| %>
+            <textarea placeholder="What are you working on?"
+                      name="visit[task]"
+                      id="visit_task"
+                      class="form-control"
+                      rows="4"
+                      ><%= current_user.active_visit.task %></textarea>
+            <br/><%= f.submit "Submit", class: 'btn btn-primary' %>
+        <% end %>
+        <hr/>
+        <%= link_to "I'm leaving", check_out_path, method: :delete, class: 'btn btn-danger' %>
     <% elsif current_user %>
-        <%= link_to "I'm here!", check_in_path, method: :post %>
+        <%= link_to "I'm here!", check_in_path, method: :post, class: 'btn btn-primary' %>
     <% else %>
-        <%= link_to "Log in", new_user_session_path %> or
-        <%= link_to "sign up", new_user_registration_path %>
+        <%= link_to image_tag('google-btn.png'), user_omniauth_authorize_path(:google_oauth2) %>
+        <br/>&dash;or&dash;<br/>
+        <%= link_to "Sign up with email", new_user_registration_path %><br/><br/>
         to tell people you're at the space!
     <% end %>
 </div>

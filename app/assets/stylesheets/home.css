@@ -1,4 +1,36 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+body.home-controller h1 {
+    text-align: center;
+    font-size: 40px;
+    color: #404040;
+}
+
+body.home-controller ul.active-visits {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+body.home-controller ul.active-visits li {
+    width: 120px;
+    border: 1px solid #a7a7a7;
+    height: 140px;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+}
+
+body.home-controller ul.active-visits li img {
+    margin: 0 auto;
+    display: block;
+}
+
+body.home-controller .nobody-here {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+body.home-controller .actions {
+    width: 100%;
+    text-align: center;
+}

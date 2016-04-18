@@ -58,6 +58,7 @@ class VisitController < ApplicationController
       flash[:alert] = "This is not your visit"
     else
       @visit.update(visit_params)
+      flash[:notice] = "Task set. Thanks for letting us know!" if visit_params[:task].present?
     end
 
     respond_to do |fmt|

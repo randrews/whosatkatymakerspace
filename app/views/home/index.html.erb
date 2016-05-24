@@ -6,7 +6,7 @@
             <li class="visit">
                 <%= link_to user_path(visit.user) do %>
                     <%= image_tag visit.user.image.url(:thumb) %>
-                    <%= visit.user.name -%>
+                    <%= visit.user.name.truncate(15) -%>
                 <% end -%>
                 <% if is_admin? %>
                     <div class="dropdown">

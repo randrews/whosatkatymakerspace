@@ -18,6 +18,7 @@ body.home-controller ul.active-visits li.visit {
     margin: 5px;
     display: inline-block;
     position: relative;
+    overflow: hidden;
 }
 
 body.home-controller ul.active-visits li.visit .dropdown {

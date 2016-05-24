@@ -13,11 +13,20 @@ body.home-controller ul.active-visits {
 body.home-controller ul.active-visits li.visit {
     width: 120px;
     border: 1px solid #a7a7a7;
-    height: 140px;
+    height: 160px;
     padding: 10px;
     margin: 5px;
     display: inline-block;
     position: relative;
+}
+
+body.home-controller ul.active-visits li.visit p {
+    position: absolute;
+    left: 10px;
+    top: 110px;
+    max-height: 40px;
+    width: 100px;
+    text-align: center;
     overflow: hidden;
 }
 
@@ -32,8 +41,8 @@ body.home-controller ul.active-visits li.visit .dropdown button {
 }
 
 body.home-controller ul.active-visits li img {
-    margin: 0 auto;
-    display: block;
+    position: absolute;
+    top: 10px; left: 10px;
 }
 
 body.home-controller .nobody-here {

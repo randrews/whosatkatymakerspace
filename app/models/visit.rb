@@ -1,6 +1,7 @@
 class Visit < ActiveRecord::Base
   belongs_to :user
   validates :user, presence: true
+  validates :arrival, presence: true
   validate :only_one_active
   before_validation :set_arrival, if: -> { active_changed?(from: false, to: true) || (new_record? && active?) }
   before_validation :set_departure, if: -> { active_changed? from: true, to: false }

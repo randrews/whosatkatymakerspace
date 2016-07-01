@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_many :visits, dependent: :destroy
   has_one :active_visit, -> { where(active: true) }, class_name: 'Visit'
 
+  after_create do
+    UserMailer.welcome(self).deliver
+  end
+
   if Rails.env.production?
     has_attached_file(:image, styles: {thumb: "100x100>"},
                       storage: :s3,

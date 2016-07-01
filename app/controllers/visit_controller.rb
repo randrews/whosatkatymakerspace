@@ -5,6 +5,8 @@ class VisitController < ApplicationController
     v = Visit.new(user: current_user, active: true)
     if v.valid?
       v.save
+      v.notify! if Visit.active.count == 1
+
       respond_to do |format|
         format.html {
           flash[:notice] = "You've arrived. Happy hacking!"

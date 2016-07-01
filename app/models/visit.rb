@@ -15,6 +15,13 @@ class Visit < ActiveRecord::Base
     save
   end
 
+  def notify!
+    name = user.try(:name) || 'someone'
+    User.where(notify: true).each do |user|
+      VisitMailer.notify(name, user.email).deliver
+    end
+  end
+
   private
 
   def only_one_active

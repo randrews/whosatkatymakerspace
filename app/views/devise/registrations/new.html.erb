@@ -41,6 +41,16 @@
                     <%= f.file_field :image %>
                 </div>
 
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <%= f.check_box :notify %>
+                            <strong>Email notifications</strong>
+                        </label>
+                    </div>
+                    <p>We will send you notifications by email when the Makerspace opens. We will never sell your email address or use it for marketing!</p>
+                </div>
+
                 <div class="actions">
                     <%= f.submit "Sign up", class: 'btn btn-primary' %>
                 </div>

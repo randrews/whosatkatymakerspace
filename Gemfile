@@ -21,6 +21,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'paperclip'
+gem 'sendgrid-ruby'
 
 gem 'aws-sdk', '< 2.0', group: [:production]
 

@@ -169,7 +169,12 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
+    sendgrid-ruby (1.0.4)
+      faraday (~> 0.9)
+      mimemagic
+      smtpapi (~> 0.1)
     slop (3.6.0)
+    smtpapi (0.1.0)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -215,6 +220,7 @@ DEPENDENCIES
   rails (= 4.1.0)
   rollbar (~> 2.8.3)
   rspec-rails
+  sendgrid-ruby
   sqlite3
   unicorn
 
